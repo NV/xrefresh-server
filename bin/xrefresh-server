@@ -20,7 +20,7 @@ module XRefreshServer
     # command-line parsing
 
     COMMAND = File.basename($0)
-    USAGE = "Usage: #{COMMAND} [OPTIONS]"
+    USAGE = "Usage: #{COMMAND} [path ...] [OPTIONS]"
 
     options = OpenStruct.new
     options.output = "-"
@@ -96,6 +96,7 @@ module XRefreshServer
     end
 
     # sanitize config values
+    CONFIG["paths"] = ARGV + CONFIG["paths"]
     CONFIG["dir_include"] = '.*' unless CONFIG["dir_include"] 
     CONFIG["file_include"] = '.*' unless CONFIG["file_include"]
     CONFIG["dir_exclude"] = '^$' unless CONFIG["dir_exclude"] 
